@@ -1,0 +1,479 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    background: blue;
+}
+
+$breakpoints: (
+    smal: 480px,
+    medium: 800px,
+    large: 1200px
+);
+
+$items: 12;
+
+@mixin break($size){
+    @media (min-width: map-get($breakpoints, $size)) {
+        @content;
+    }
+}
+
+@each $key, $value in $breakpoints{
+    @include break($key){
+        @for $i from 1 through $items {
+            .column-#{$key}-#{$i} {
+                width: #{$i / $items * 100%};
+                float: left;
+            }
+        }
+
+    }
+}
+
+@mixin clearfix(){
+    &:after{
+        content: ".";
+        display: block;
+        clear: both;
+    }
+    &:before{
+        content: ".";
+        display: block;
+        clear: both;
+    }
+}
+.row{
+    @include clearfix;
+}
+//variables sintaxys $nameVariable
+$bgColor: #fafa;
+$color: #cccccc;
+$blockWidth: 30%;
+$border: 4px solid red;
+$mainFontSize: 1.1em;
+$fontW: normal;
+$blockHeight: 100%;
+
+@mixin font($color, $fontW){
+    font-size: $mainFontSize;
+    font-size: 1.1em;
+    font-weight: bold;
+    font-family: Arial, sans-serif;
+    color: $color;
+}
+
+.col{
+    background: $bgColor;
+    height: $blockHeight;
+}
+//coment
+// .by class name
+// # by index
+// [] by atribute
+.block:not(.first){
+    background: $bgColor;
+    height: 200px;
+    margin-bottom: 20px;
+
+    border: $border;
+}
+#central_block{
+    padding: 30px;
+
+    ul{
+        list-style: none;
+    }
+    li{
+        float: left;
+        margin-right: 10px;
+
+        a{
+            @include font(blue, bold);
+            color: blue;
+
+        }
+    }
+}
+
+.first{
+    background: $bgColor;
+    height: 100px;
+    margin-bottom: 20px;
+}
+.wrapper {
+    width:500px;
+    margin:0 auto;
+    position: relative;
+    text-align:center;
+  }
+  .h1 {
+    text-transform: uppercase;
+    font-weight:bold;
+    font-size:6rem;
+    /* display:inline-block; */
+    position: relative;
+    color:transparent;
+    margin-bottom: 0;
+
+    &:before {
+      content:"Shatter";
+      position: absolute;
+      top:0px;
+      left:22px;
+      color:white;
+      clip-path: inset(0px 298px 0px 0px);
+      transition:all 0.3s;
+    }
+
+    span:before {
+      content:"Shatter";
+      position: absolute;
+      top:0px;
+      left:22px;
+      color:white;
+      clip-path: inset(0px 200px 0px 154px);
+      transition:all 0.3s;
+    }
+
+
+    &:after {
+      content:"Shatter";
+      position: absolute;
+      right:24px;
+      top:0px;
+      color:white;
+      clip-path: inset(0px 100px 0px 250px);
+      transition:all 0.5s;
+    }
+
+    span:after {
+      content:"Shatter";
+      position: absolute;
+      right:24px;
+      top:0px;
+      color:white;
+      clip-path: inset(0px 0px 0px 353px);
+      transition:all 0.5s;
+    }
+
+     &:hover:after {
+        top:10px;
+       cursor:pointer;
+       color:rgba(255,255,255,0.6);
+      }
+
+    &:hover:before {
+        top:-10px;
+        left:0px;
+        cursor:pointer;
+        color:rgba(255,255,255,0.6);
+      }
+
+    &:hover span:before {
+      top:4px;
+      cursor:pointer;
+    }
+
+    &:hover span:after {
+      top:-8px;
+      left:30px;
+      cursor:pointer;
+    }
+
+    /*span {
+      display:block;
+      transition:all 0.3s;
+      &:hover:before {
+
+      }
+      &:hover:after {
+        top:14px;
+        cursor:pointer;
+      }
+    }*/
+  }
+
+  h3 {
+    color:white;
+  }
+
+  .gallery-wrap {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 70vh;
+  }
+
+  .item {
+    flex: 1;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-repeat: none;
+    transition: flex 0.8s ease;
+
+    &:hover{
+      flex: 7;
+    }
+  }
+
+  .item-1 {
+    background-image: url(http://www.rayong-guide.com/wp-content/uploads/2017/09/sunrise-bg-3.jpg);
+  }
+
+  .item-2 {
+    background-image: url(https://i.pinimg.com/originals/fa/e9/01/fae9019a72235442088baf655ec29e26.jpg);
+  }
+
+  .item-3 {
+    background-image: url(https://pbs.twimg.com/media/DbPPu7xX0AEj1i_.jpg);
+  }
+
+  .item-4 {
+    background-image: url(http://sitsongpeenong.com/muay-thai/bangkok/wp-content/uploads/2013/10/bg-hh.jpg);
+  }
+
+  .item-5 {
+    background-image: url(https://cdn.thinglink.me/api/image/631491911491780609/1240/10/scaletowidth);
+  }
+
+/*===================================*/
+$t: 5.5s;
+$e1: cubic-bezier(0.8, 0.00, 0.1, 1);
+$e2: cubic-bezier(0.600, 0.040, 0.980, 0.335);
+$er: linear;
+
+$color: hsl(15,75%,40%);
+$font: 'Abril Fatface', sans-serif;
+
+$slides: 4;
+$images: url(https://thunderwiring.files.wordpress.com/2015/10/neuron.jpg?w=1200) url(https://ambientdigitalgroup.com/wp-content/uploads/2017/07/ambient-bg.jpg) url(https://serenitycouture.com/wp-content/uploads/2017/03/mission-bg-3.jpg)  url(https://www.mobygames.com/images/promo/original/8652aceb41a3478fb1062afff3cdcafa.jpg);
+
+.slider-section{
+    position: relative;
+	width: 100vw;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.untitled{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	@keyframes rotateHue {
+		0%{ filter: hue-rotate(0deg); }
+		20%{ filter: hue-rotate(0deg); }
+		25%{ filter: hue-rotate(90deg); }
+		45%{ filter: hue-rotate(90deg); }
+		50%{ filter: hue-rotate(180deg); }
+		70%{ filter: hue-rotate(180deg); }
+		75%{ filter: hue-rotate(270deg); }
+		95%{ filter: hue-rotate(270deg); }
+		100%{ filter: hue-rotate(360deg); }
+	}
+	animation: rotateHue infinite $t*$slides*2 linear;
+	animation-delay: $t/4;
+
+	&__shutters{
+		position: absolute;
+		height: 150vmax;
+		width: 150vmax;
+		left: calc(50% - 75vmax);
+		top: calc(50% - 75vmax);
+		pointer-events: none;
+		z-index: 2;
+		@keyframes rotateFrame{
+			0%{ transform: rotate(0deg);}
+			100%{ transform: rotate(180deg);}
+		}
+		animation: rotateFrame $t*4 $er infinite;
+
+		&:before, &:after{
+			content: '';
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			left: 50%;
+			transform: translate3d(-50%, 0, 0);
+			background-color: $color;
+			pointer-events: auto;
+		}
+		&:before{
+			bottom: 50%;
+			@keyframes openTop{
+				0%{ transform: translate3d(-50%, 0, 0); animation-timing-function: $e1; }
+				40%{ transform: translate3d(-50%, -65vmax, 0); animation-timing-functon: $e2; }
+				70%{ transform: translate3d(-50%, -65vmax, 0); animation-timing-functon: $e2; }
+				100%{ transform: translate3d(-50%, 0, 0); animation-timing-function: $e2; }
+			}
+			animation: openTop $t*2 infinite;
+		}
+		&:after{
+			top: 50%;
+			@keyframes openBottom{
+				0%{ transform: translate3d(-50%, 0, 0); animation-timing-function: $e1; }
+				40%{ transform: translate3d(-50%, 65vmax, 0); animation-timing-functon: $e2; }
+				70%{ transform: translate3d(-50%, 65vmax, 0); animation-timing-functon: $e2; }
+				100%{ transform: translate3d(-50%, 0, 0); animation-timing-function: $e2; }
+			}
+			animation: openBottom $t*2 infinite;
+		}
+	}
+
+	&__slides{
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		background-color: $color;
+	}
+	&__slide{
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		opacity: 0;
+		@keyframes showHideSlide{
+			0%{
+				opacity: 1;
+				pointer-events: auto;
+				z-index: 1;
+			}
+			#{100% / $slides}{
+				opacity: 0;
+				pointer-events: none;
+				z-index: -1;
+			}
+			100%{
+				opacity: 0;
+				pointer-events: none;
+				z-index: -1;
+			}
+		}
+		animation: showHideSlide infinite $t*$slides*2 steps(1);
+		@for $i from 1 through $slides{
+			&:nth-child(#{$i}){
+				animation-delay: $t * ($i - 1) * 2;
+				.untitled__slideBg{
+					background-image: nth($images, $i);
+				}
+			}
+		}
+	}
+	&__slideBg{
+		position: relative;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		left: 0;
+		background-size: cover;
+		background-position: center;
+		background-color: $color;
+		background-blend-mode: hard-light;
+		opacity: 1;
+		z-index: -1;
+		@keyframes bgInOut{
+			0%{ transform: rotate(-45deg) scale(1.1); animation-timing-function: cubic-bezier(0.165, 0.840, 0.440, 1.000);}
+			33%{ transform: rotate(0deg);}
+			50%{ transform: rotate(0deg); }
+			66%{ transform: rotate(0deg); animation-timing-function: cubic-bezier(0.895, 0.030, 0.685, 0.220); }
+			100%{ transform: rotate(45deg) scale(0.9);}
+		}
+		animation: bgInOut $t*4 -$t*2 infinite;
+	}
+	&__slideContent{
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate3d(-50%,-50%,0);
+		color: white;
+		font-family: $font;
+		line-height: 0.8;
+		letter-spacing: -0.025em;
+		z-index: 2;
+		opacity: 1;
+		text-shadow: 0 0 0.5em rgba($color,0.25);
+		mix-blend-mode: lighten;
+		span{
+			display: block;
+			font-size: 15vmin;
+		}
+	}
+}
+.button{
+	font-family:'Roboto Mono', sans-serif;
+	text-decoration: none;
+	font-weight: 800;
+	text-transform: uppercase;
+	font-size: 2vmin;
+	display: inline-block;
+	position: relative;
+	border: 3px solid white;
+	box-shadow: -0.5vmin 0.5vmin 0 rgba(white, 0.5);
+	background: transparent;
+	margin-top: 5vmin;
+	mix-blend-mode: lighten;
+	color: white;
+	padding: 2vmin 2vmin 1.8vmin 2vmin;
+	letter-spacing: 0.1em;
+	text-shadow: none;
+	line-height: 1;
+	transform: translate3d(0.5vmin, -0.5vmin, 0);
+	transition: all 100ms linear;
+	&:hover{
+		transform: translate3d(1vmin, -1vmin, 0);
+		box-shadow: -1vmin 1vmin 0 rgba(white, 0.5);
+		background: white;
+		color: black;
+	}
+	&:active{
+		transform: translate3d(0px, 0px, 0);
+		box-shadow: -0px 0px 0 rgba(white, 0.5);
+	}
+}
+
+/*=================== */
+/* Header */
+.large-header {
+	position: relative;
+	width: 100%;
+	background: #333;
+	overflow: hidden;
+	background-size: cover;
+	background-position: center center;
+	z-index: 1;
+}
+
+#large-header {
+	background-image: url('https://www.marcoguglie.it/Codepen/AnimatedHeaderBg/demo-1/img/demo-1-bg.jpg');
+}
+
+.main-title {
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	color: #f9f1e9;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate3d(-50%,-50%,0);
+	transform: translate3d(-50%,-50%,0);
+}
+
+.demo-canvas .main-title {
+	text-transform: uppercase;
+	font-size: 4.2em;
+	letter-spacing: 0.1em;
+}
+
+.main-title .thin {
+	font-weight: 200;
+}
+
+@media only screen and (max-width : 768px) {
+	.demo-canvas .main-title {
+		font-size: 3em;
+	}
+}
